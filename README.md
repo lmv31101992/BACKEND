@@ -1,1 +1,1 @@
-Primer compromiso de la prueba de concepto CRUD de gestión de usuarios.
+First user management CRUD proof of concept commit.
