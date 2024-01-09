@@ -1,27 +1,13 @@
-from fastapi import FastAPI,HTTPException, Depends, APIRouter
-from routers import register
-from clases import Conexion,BaseDatos,Usuario
 import uvicorn
-
-access_list_bbdd = ['bd_pruebas', "postgres", 'admin', "127.0.0.1", "5432"]
-conexion = Conexion(access_list_bbdd)
-bbdd = BaseDatos()
-u = Usuario()
-
-def get_conexion_instance():
-    return conexion
-
-def get_bbdd_instance():
-    return bbdd
-
-def get_usuario_instance():
-    return u
-
+from fastapi import FastAPI
+from routers import auth,register,delete
 
 app = FastAPI()
-print("1")
-app.include_router(register.router, dependencies=[Depends(get_conexion_instance), Depends(get_bbdd_instance), Depends(get_usuario_instance)])
-print("2")
+
+app.include_router(auth.router)
+app.include_router(register.router)
+app.include_router(delete.router)
+
 @app.get("/")
 async def root():
     return "hola cliente, bienvenido a nuestra app"
