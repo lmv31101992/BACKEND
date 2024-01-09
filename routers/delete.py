@@ -6,7 +6,7 @@ router = APIRouter()
 connect = conexion.abrirConexion(conexion.docker_list)
 
 
-@router.delete("/delete")
+@router.delete("/")
 async def BorrarUsuario(username:str , user: usuario.User = Depends(usuario.current_user)):
     if not connect:
         raise HTTPException(
